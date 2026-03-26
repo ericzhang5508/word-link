@@ -1,6 +1,6 @@
 # Word-Link
 
-A daily crossword application built with ASP.NET Core 8.0 MVC, SignalR, and SQLite. It features a minimalist Japanese "Silent Authority" design and real-time global solve counts.
+A daily crossword application built with ASP.NET Core 10.0 MVC, SignalR, and SQLite. It features a minimalist Japanese "Silent Authority" design and real-time global solve counts.
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
@@ -13,7 +13,7 @@ A daily crossword application built with ASP.NET Core 8.0 MVC, SignalR, and SQLi
 ## Prerequisites
 
 Ensure you have the following installed on your local machine:
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [.NET 10.0 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 - IDE of your choice (Visual Studio 2022, Jetbrains Rider, or Visual Studio Code with the C# extension)
 - Tailwind CSS CLI (if you are re-building styles on the frontend)
 - [dotnet ef](https://learn.microsoft.com/en-us/ef/core/cli/dotnet) CLI tool for managing the SQLite database.
@@ -89,9 +89,9 @@ To prepare the application for a production environment (such as a Windows Serve
      ```
 
 3. **Hosting:**
-   - **Windows (IIS):** Install the [.NET Hosting Bundle](https://dotnet.microsoft.com/download/dotnet/8.0). Point an IIS site to the `publish` folder and set the Application Pool to "No Managed Code".
+   - **Windows (IIS):** Install the [.NET Hosting Bundle](https://dotnet.microsoft.com/download/dotnet/10.0). Point an IIS site to the `publish` folder and set the Application Pool to "No Managed Code".
    - **Linux (Nginx/Apache):** Set up a reverse proxy using Nginx or Apache configured to forward requests to the Kestrel server running on a local port (e.g., 5000) using a `systemd` service to keep the app running.
-   - **Docker:** You can alternatively containerize the application using a `Dockerfile` with the `mcr.microsoft.com/dotnet/aspnet:8.0` runtime image.
+   - **Docker:** You can alternatively containerize the application using a `Dockerfile` with the `mcr.microsoft.com/dotnet/aspnet:10.0` runtime image.
 
 4. **SignalR Configuration:**
    If deploying to a load-balanced environment (multiple servers or instances), ensure you configure a Redis backplane for SignalR so real-time crossword solve counts can be broadcast across all instances. (If running on a single instance, the default in-memory SignalR setup is sufficient).
