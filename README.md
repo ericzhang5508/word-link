@@ -23,7 +23,7 @@ Ensure you have the following installed on your local machine:
 ## Debugging & Local Development
 
 1. **Clone or Open the Project:**
-   Open the root directory (`/Users/eric/Sites/word-link`) in your IDE.
+   Open the root directory (`{your local path here}/word-link`) in your IDE.
 
 2. **Restore Dependencies:**
    ```bash
