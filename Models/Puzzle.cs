@@ -3,7 +3,7 @@ namespace WordLink.Models;
 public class Puzzle
 {
     public int Id { get; set; }
-    public int GridSize { get; set; } = 15;
+    public int GridSize { get; set; } = 5;
 
     /// <summary>
     /// JSON serialized 2D array of the grid.
