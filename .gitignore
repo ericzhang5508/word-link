@@ -485,3 +485,9 @@ $RECYCLE.BIN/
 *.db
 *.db-shm
 *.db-wal
+
+# Visual Studio for Mac
+word-link.sln
+word-link.sln.user
+word-link.sln.docstates
+

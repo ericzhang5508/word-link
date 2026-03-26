@@ -95,3 +95,7 @@ To prepare the application for a production environment (such as a Windows Serve
 
 4. **SignalR Configuration:**
    If deploying to a load-balanced environment (multiple servers or instances), ensure you configure a Redis backplane for SignalR so real-time crossword solve counts can be broadcast across all instances. (If running on a single instance, the default in-memory SignalR setup is sufficient).
+
+## License
+
+This project is licensed under the terms of the [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html) license.
