@@ -88,7 +88,7 @@ public class AppDbContext : DbContext
             // Down Clues
             new() { Id = 6, PuzzleId = 1, Number = 1, Direction = "Down", Text = "Crane or egret.", Answer = "CRANE", StartRow = 0, StartCol = 0 },
             new() { Id = 7, PuzzleId = 1, Number = 2, Direction = "Down", Text = "Remote Dictionary Server.", Answer = "REDIS", StartRow = 0, StartCol = 1 },
-            new() { Id = 8, PuzzleId = 1, Number = 3, Direction = "Down", Text = "A nomadic, Iranic people.", Answer = "ALANS", StartRow = 0, StartCol = 2 }, 
+            new() { Id = 8, PuzzleId = 1, Number = 3, Direction = "Down", Text = "A ancient, nomadic people.", Answer = "ALANS", StartRow = 0, StartCol = 2 }, 
             new() { Id = 9, PuzzleId = 1, Number = 4, Direction = "Down", Text = "A nymph of valleys, glens, and wooded areas.", Answer = "NAPEA", StartRow = 0, StartCol = 3 },
             new() { Id = 10, PuzzleId = 1, Number = 5, Direction = "Down", Text = "EYTSY (Not a Word)", Answer = "EYTSY", StartRow = 0, StartCol = 4 }
         };
