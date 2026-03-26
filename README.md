@@ -1,6 +1,6 @@
 # Word-Link
 
-A daily crossword application built with ASP.NET Core 10.0 MVC, SignalR, and SQLite. It features a minimalist Japanese "Silent Authority" design and real-time global solve counts.
+A daily crossword application built with ASP.NET Core 10.0 MVC, SignalR, and SQLite. It features a "Silent Authority" design and real-time global solve counts.
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
