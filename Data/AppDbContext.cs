@@ -82,7 +82,7 @@ public class AppDbContext : DbContext
             new() { Id = 1, PuzzleId = 1, Number = 1, Direction = "Across", Text = "Large bird of the marsh.", Answer = "CRANE", StartRow = 0, StartCol = 0 },
             new() { Id = 2, PuzzleId = 1, Number = 6, Direction = "Across", Text = "Race where a baton is passed.", Answer = "RELAY", StartRow = 1, StartCol = 0 },
             new() { Id = 3, PuzzleId = 1, Number = 7, Direction = "Across", Text = "To adjust to new conditions.", Answer = "ADAPT", StartRow = 2, StartCol = 0 },
-            new() { Id = 4, PuzzleId = 1, Number = 8, Direction = "Across", Text = "To the nines is to perfection.", Answer = "NINES", StartRow = 3, StartCol = 0 },
+            new() { Id = 4, PuzzleId = 1, Number = 8, Direction = "Across", Text = "To the 'nines' is to perfection.", Answer = "NINES", StartRow = 3, StartCol = 0 },
             new() { Id = 5, PuzzleId = 1, Number = 9, Direction = "Across", Text = "A short piece of writing.", Answer = "ESSAY", StartRow = 4, StartCol = 0 },
         
             // Down Clues
