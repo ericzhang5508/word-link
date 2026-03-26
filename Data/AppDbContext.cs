@@ -87,7 +87,7 @@ public class AppDbContext : DbContext
         
             // Down Clues
             new() { Id = 6, PuzzleId = 1, Number = 1, Direction = "Down", Text = "Crane or egret.", Answer = "CRANE", StartRow = 0, StartCol = 0 },
-            new() { Id = 9, PuzzleId = 1, Number = 4, Direction = "Down", Text = "Vapor or steam.", Answer = "NAPRE", StartRow = 0, StartCol = 3 },
+            new() { Id = 9, PuzzleId = 1, Number = 4, Direction = "Down", Text = "Massage guns.", Answer = "NAPRE", StartRow = 0, StartCol = 3 },
         };
 
         modelBuilder.Entity<Clue>().HasData(clues);
