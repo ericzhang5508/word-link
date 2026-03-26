@@ -1,0 +1,148 @@
+@model WordLink.ViewModels.PuzzleViewModel
+@{
+    ViewData["Title"] = "Word-Link — Daily Crossword";
+}
+
+<!-- TopAppBar Navigation Shell -->
+<header id="app-header" class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 h-14 bg-white border-b border-on-surface/5">
+    <div class="flex items-center gap-8">
+        <span class="text-lg font-bold text-on-surface tracking-tight">CROSSWORD</span>
+        <nav class="hidden md:flex gap-6 items-center">
+            <a id="nav-daily" class="font-['Inter'] font-black text-xs tracking-[0.2em] text-primary" href="#">Daily Puzzle</a>
+        </nav>
+    </div>
+    <div class="flex items-center gap-6">
+        <button id="btn-check-solve" class="bg-primary text-on-primary px-4 py-1.5 text-[10px] font-bold tracking-widest uppercase transition-all active:scale-95 hover:bg-primary-dim">
+            Check Solve
+        </button>
+        <div class="flex items-center gap-4 text-on-surface opacity-40">
+            <span id="btn-help" class="material-symbols-outlined cursor-pointer hover:opacity-100 transition-opacity">help_outline</span>
+            <span id="btn-history" class="material-symbols-outlined cursor-pointer hover:opacity-100 transition-opacity">history</span>
+        </div>
+    </div>
+</header>
+
+<main class="pt-24 pb-32 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+    <div class="flex flex-col lg:flex-row gap-12 items-start">
+        <!-- Main Grid Section -->
+        <div class="w-full lg:w-3/5 flex flex-col gap-6">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h1 class="text-4xl font-black text-on-surface tracking-tighter mb-2">Word-Link</h1>
+                    <p class="text-xs tracking-widest text-on-surface-variant uppercase font-medium">@Model.FormattedDate</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-[10px] tracking-widest text-on-surface-variant uppercase">Difficulty</span>
+                    <p class="text-sm font-bold">@Model.Puzzle.Difficulty</p>
+                </div>
+            </div>
+
+            <!-- Crossword Grid Container -->
+            <div id="crossword-grid" class="crossword-grid shadow-2xl" data-puzzle-id="@Model.Puzzle.Id" data-grid='@Model.Puzzle.GridData' data-size="@Model.Puzzle.GridSize">
+                <!-- Grid cells rendered by JS -->
+            </div>
+
+            <!-- Active Clue Bar -->
+            <div id="active-clue-bar" class="bg-surface-container-lowest p-6 border-l-4 border-primary">
+                <p id="active-clue-label" class="text-[10px] tracking-widest text-on-surface-variant uppercase font-bold mb-1">Select a cell to begin</p>
+                <p id="active-clue-text" class="text-xl font-bold">Click on any white cell in the grid above.</p>
+            </div>
+        </div>
+
+        <!-- Clue Lists -->
+        <div class="w-full lg:w-2/5 flex flex-col gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12">
+                <!-- Across Clues -->
+                <section>
+                    <h2 class="text-sm font-black tracking-[0.3em] uppercase mb-6 border-b border-on-surface/10 pb-2">Across</h2>
+                    <div id="clue-list-across" class="clue-scroll max-h-[400px] overflow-y-auto space-y-1 pr-4">
+                        @foreach (var clue in Model.AcrossClues)
+                        {
+                            <div class="clue-item flex gap-4 group cursor-pointer px-2 py-2 transition-all duration-150 hover:bg-surface-container-low"
+                                 data-clue-number="@clue.Number" data-clue-direction="Across"
+                                 data-start-row="@clue.StartRow" data-start-col="@clue.StartCol"
+                                 data-answer-length="@clue.Answer.Length">
+                                <span class="font-bold text-primary shrink-0 w-6">@clue.Number</span>
+                                <p class="text-xs leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">@clue.Text</p>
+                            </div>
+                        }
+                    </div>
+                </section>
+
+                <!-- Down Clues -->
+                <section>
+                    <h2 class="text-sm font-black tracking-[0.3em] uppercase mb-6 border-b border-on-surface/10 pb-2">Down</h2>
+                    <div id="clue-list-down" class="clue-scroll max-h-[400px] overflow-y-auto space-y-1 pr-4">
+                        @foreach (var clue in Model.DownClues)
+                        {
+                            <div class="clue-item flex gap-4 group cursor-pointer px-2 py-2 transition-all duration-150 hover:bg-surface-container-low"
+                                 data-clue-number="@clue.Number" data-clue-direction="Down"
+                                 data-start-row="@clue.StartRow" data-start-col="@clue.StartCol"
+                                 data-answer-length="@clue.Answer.Length">
+                                <span class="font-bold text-primary shrink-0 w-6">@clue.Number</span>
+                                <p class="text-xs leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">@clue.Text</p>
+                            </div>
+                        }
+                    </div>
+                </section>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="mt-8 pt-8 border-t border-on-surface/5">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-surface-container-low p-4">
+                        <span class="text-[9px] tracking-widest text-on-surface-variant uppercase block mb-1">Time Elapsed</span>
+                        <span id="timer-display" class="text-lg font-bold tabular-nums">00:00</span>
+                    </div>
+                    <div class="bg-surface-container-low p-4">
+                        <span class="text-[9px] tracking-widest text-on-surface-variant uppercase block mb-1">Completion</span>
+                        <span id="completion-display" class="text-lg font-bold tabular-nums">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer Shell -->
+<footer class="fixed bottom-0 left-0 w-full z-40 py-4 px-10 flex justify-between items-center bg-transparent backdrop-blur-xl border-t border-on-surface/5 shadow-[0_-4px_40px_rgba(45,52,53,0.04)]">
+    <div class="flex items-center gap-6">
+        <span id="global-solve-count" class="font-['Inter'] tabular-nums text-xs font-bold text-primary">
+            Global Solve Count: @Model.GlobalSolveCount.ToString("N0")
+        </span>
+    </div>
+    <div class="flex items-center gap-8">
+        <a id="link-archive" class="font-['Inter'] text-xs font-bold text-on-surface opacity-40 hover:opacity-100 hover:underline decoration-primary underline-offset-4 transition-all duration-200" href="#">Archive</a>
+        <a id="link-rules" class="font-['Inter'] text-xs font-bold text-on-surface opacity-40 hover:opacity-100 hover:underline decoration-primary underline-offset-4 transition-all duration-200" href="#">Rules</a>
+        <a id="link-leaderboard" class="font-['Inter'] text-xs font-bold text-on-surface opacity-40 hover:opacity-100 hover:underline decoration-primary underline-offset-4 transition-all duration-200" href="#">Leaderboard</a>
+    </div>
+</footer>
+
+<!-- Check result overlay -->
+<div id="result-overlay" class="fixed inset-0 z-[100] flex items-center justify-center bg-on-surface/40 backdrop-blur-sm hidden">
+    <div class="bg-white p-10 max-w-md w-full text-center">
+        <span id="result-icon" class="material-symbols-outlined text-5xl mb-4 block"></span>
+        <h2 id="result-title" class="text-2xl font-black mb-2"></h2>
+        <p id="result-message" class="text-sm text-on-surface-variant mb-6"></p>
+        <button id="result-close" class="bg-primary text-on-primary px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-primary-dim transition-all active:scale-95">
+            Continue
+        </button>
+    </div>
+</div>
+
+<!-- Help modal -->
+<div id="help-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-on-surface/40 backdrop-blur-sm hidden">
+    <div class="bg-white p-10 max-w-lg w-full">
+        <h2 class="text-2xl font-black mb-4">How to Play</h2>
+        <div class="space-y-3 text-sm text-on-surface-variant leading-relaxed">
+            <p><strong class="text-on-surface">Click</strong> any white cell to select it. The active word will be highlighted.</p>
+            <p><strong class="text-on-surface">Type</strong> a letter to fill the cell and advance to the next.</p>
+            <p><strong class="text-on-surface">Click</strong> the same cell again to toggle between Across and Down.</p>
+            <p>Use <strong class="text-on-surface">Arrow Keys</strong> to navigate, <strong class="text-on-surface">Backspace</strong> to delete.</p>
+            <p>Click <strong class="text-on-surface">Check Solve</strong> to verify your solution.</p>
+        </div>
+        <button id="help-close" class="mt-6 bg-primary text-on-primary px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-primary-dim transition-all active:scale-95">
+            Got it
+        </button>
+    </div>
+</div>

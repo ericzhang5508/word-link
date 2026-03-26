@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Word-Link — Daily Crossword</title>
+    <meta name="description" content="Word-Link is a daily crossword puzzle featuring a minimalist Japanese-inspired design. Challenge yourself with a new puzzle every day."/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#e4e9ea",
+                        "on-tertiary-fixed-variant": "#666666",
+                        "on-surface-variant": "#5a6061",
+                        "on-surface": "#2d3435",
+                        "on-tertiary-container": "#5b5c5c",
+                        "surface": "#f9f9f9",
+                        "on-secondary-fixed": "#403f3f",
+                        "on-tertiary-fixed": "#494a4a",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-container": "#ebeeef",
+                        "tertiary-fixed-dim": "#e6e5e5",
+                        "on-primary-fixed": "#4c3e00",
+                        "secondary-dim": "#545353",
+                        "primary-fixed-dim": "#f9d200",
+                        "surface-variant": "#dde4e5",
+                        "primary-dim": "#625100",
+                        "primary-container": "#ffe16d",
+                        "inverse-surface": "#0c0f0f",
+                        "on-background": "#2d3435",
+                        "inverse-on-surface": "#9c9d9d",
+                        "surface-container-highest": "#dde4e5",
+                        "surface-bright": "#f9f9f9",
+                        "secondary-container": "#e5e2e1",
+                        "on-secondary": "#fbf8f8",
+                        "primary": "#705d00",
+                        "surface-dim": "#d4dbdd",
+                        "secondary-fixed-dim": "#d6d4d3",
+                        "surface-container-low": "#f2f4f4",
+                        "surface-tint": "#705d00",
+                        "on-error-container": "#742410",
+                        "primary-fixed": "#ffe16d",
+                        "tertiary-fixed": "#f5f3f3",
+                        "error-container": "#fe8b70",
+                        "outline": "#757c7d",
+                        "inverse-primary": "#ffd709",
+                        "error-dim": "#5c1202",
+                        "on-error": "#fff7f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#faf8f8",
+                        "tertiary": "#5f5f5f",
+                        "secondary": "#605f5f",
+                        "on-primary-fixed-variant": "#6c5a00",
+                        "on-primary-container": "#615100",
+                        "background": "#f9f9f9",
+                        "on-secondary-container": "#525151",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "on-primary": "#fff7e6",
+                        "tertiary-container": "#f5f3f3",
+                        "tertiary-dim": "#535353",
+                        "outline-variant": "#adb3b4",
+                        "error": "#9e422c"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Roboto", "Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+    @RenderBody()
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script src="~/js/crossword.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
