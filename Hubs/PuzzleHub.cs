@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace WordLink.Hubs;
 
+/// <summary>
+/// SignalR Hub for handling real-time puzzle interactions and updates.
+/// </summary>
 public class PuzzleHub : Hub
 {
     /// <summary>
