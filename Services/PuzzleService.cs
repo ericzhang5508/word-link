@@ -9,6 +9,10 @@ public class PuzzleService
 {
     private readonly AppDbContext _db;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PuzzleService"/> class.
+    /// </summary>
+    /// <param name="db">The application database context.</param>
     public PuzzleService(AppDbContext db)
     {
         _db = db;
@@ -88,6 +92,11 @@ public class PuzzleService
         return stats.SolveCount;
     }
 
+    /// <summary>
+    /// Retrieves the current global solve count for a specific puzzle.
+    /// </summary>
+    /// <param name="puzzleId">The unique identifier of the puzzle.</param>
+    /// <returns>The total number of successful solves.</returns>
     public async Task<int> GetSolveCountAsync(int puzzleId)
     {
         var stats = await _db.GlobalStats.FirstOrDefaultAsync(s => s.PuzzleId == puzzleId);
