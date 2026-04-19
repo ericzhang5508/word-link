@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using WordLink.Data;
 using WordLink.Hubs;
@@ -17,6 +18,14 @@ builder.Services.AddScoped<PuzzleService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
 
+// Swagger Documentation
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
+
 var app = builder.Build();
 
 // Auto-migrate on startup
@@ -29,6 +38,13 @@ using (var scope = app.Services.CreateScope())
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
+}
+else
+{
+    // Enable middleware to serve generated Swagger as a JSON endpoint.
+    app.UseSwagger();
+    // Enable middleware to serve swagger-ui
+    app.UseSwaggerUI();
 }
 
 app.UseStaticFiles();
