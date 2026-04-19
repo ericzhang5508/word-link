@@ -48,7 +48,6 @@ public class AppDbContext : DbContext
     private void SeedData(ModelBuilder modelBuilder)
     {
         // 5x5 grid: letters for cells, "#" for black cells
-        // This puzzle is inspired by the design mockup
         var grid = new string[5, 5]
         {
             { "C", "R", "A", "N", "E" },
