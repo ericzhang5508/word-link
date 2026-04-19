@@ -4,12 +4,21 @@ using System.Text.Json;
 
 namespace WordLink.Data;
 
+/// <summary>
+/// The main database context for the WordLink application.
+/// Manages the data access and ORM mapping for puzzles, clues, and statistics.
+/// </summary>
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
+    /// <summary>Database set representing crossword puzzles.</summary>
     public DbSet<Puzzle> Puzzles => Set<Puzzle>();
+
+    /// <summary>Database set representing clues associated with puzzles.</summary>
     public DbSet<Clue> Clues => Set<Clue>();
+
+    /// <summary>Database set representing global statistics for puzzles.</summary>
     public DbSet<GlobalStats> GlobalStats => Set<GlobalStats>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
